@@ -1,0 +1,87 @@
+<head>
+  <title>modelizer</title>
+    <script src="jquery-ui-1.10.2.custom.min.js"></script>
+</head>
+
+<body>
+    <div class="navbar">
+        <div class="navbar-inner">
+            <a href="#" class="brand">
+                Meteorello
+            </a>
+            <div class="brand">
+                Trello like toy app
+            </div>
+            <div class="pull-right">
+                {{loginButtons align="right"}}
+            </div>
+        </div>
+    </div>
+
+    {{> detailCard}}
+    {{#if currentUser}}
+        {{> board}}
+    {{else}}
+        <h3>Meteorello</h3>
+    {{/if}}
+</body>
+
+<template name="board">
+    <div class="container">
+        <div class="row-fluid">
+            {{#each groups}}
+            {{> group}}
+            {{/each}}
+        </div>
+    </div>
+</template>
+
+<template name="group">
+    <div class="thumbnail group span4">
+        <h2>{{title}}</h2>
+
+        <div>
+            {{#each cards}}
+            {{> card}}
+            {{/each}}
+            <div class="thumbnail add">
+                <i class="icon-plus"></i> add a card
+            </div>
+        </div>
+    </div>
+</template>
+
+<template name="card">
+    <div class="thumbnail card">
+        <h4>
+            {{title}}
+            <span class="pull-right delete">&times;</span>
+        </h4>
+        <p>{{message}} {{x}} {{y}}</p>
+    </div>
+</template>
+
+<template name="detailCard">
+    {{#if show}}
+        {{#with card}}
+        <div class="modal" id="detailCard">
+            <div class="modal-header">
+                {{title}}
+                <span class="pull-right close">
+                    &times;
+                </span>
+            </div>
+            <div class="modal-body">
+                <p>
+                    {{message}}
+                </p>
+            </div>
+            <div class="modal-footer">
+                <button class="btn edit"><i class="icon-edit"></i>Edit</button>
+                <button class="btn btn-warning delete"><i class="icon-remove"></i>Remove</button>
+                <button class="btn btn-primary ok">OK</button>
+            </div>
+        </div>
+        {{/with}}
+    {{/if}}
+</template>

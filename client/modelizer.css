@@ -1,0 +1,8 @@
+/* CSS declarations go here */
+
+.card { position: relative;}
+.to-drop { background:#32cd32 !important;}
+.drop-target { background:#e6e6fa;}
+.add { background:#add8e6; cursor:pointer }
+.delete { cursor:pointer }
+.card { margin-bottom:4px }
