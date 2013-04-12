@@ -16,12 +16,18 @@ Template.card.events
     bootbox.confirm 'are you sure?', (result) =>
       Cards.remove(@_id)
   'click .card' : ->
-      Session.set('card',@_id)
+      Session.set('card',@_id) unless Session.get('dragging')
 
 Template.card.rendered = ->
   $e = $(this.find('.card'))
   $e.data('id',@data._id)
-  $e.draggable revert:true
+  $e.draggable
+    revert:true
+    start:=>
+      Session.set('dragging',@data)
+    stop:=>
+      Session.set('dragging')
+
 
 Template.group.rendered = ->
   $e = $(this.find('.group'))
