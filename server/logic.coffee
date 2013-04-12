@@ -1,8 +1,11 @@
-createIfNotExists = (name) ->
-  doc = {owner:Meteor.userId(),title:name}
-  Groups.insert doc unless Groups.findOne doc
+Meteor.publish 'boards', ->
+  Boards.find({owner:@userId})
 
-Meteor.methods
-  'welcome' : ->
-    _.each 'to-do doing done'.split(' '), createIfNotExists
+Meteor.publish 'groups', (board) ->
+  Groups.find({board:board})
 
+Meteor.publish 'cards', ->
+  Cards.find()
+
+Meteor.publish 'members', ->
+  Meteor.users.find()

@@ -5,4 +5,9 @@
 .drop-target { background:#e6e6fa;}
 .add { background:#add8e6; cursor:pointer }
 .delete { cursor:pointer }
-.card { margin-bottom:4px }
+.card { margin-bottom:4px; background: white; }
+.dragging {
+    -webkit-transition-duration:0 !important;
+    -webkit-transform:rotate(-2deg);
+    z-index: 1000;
+}
